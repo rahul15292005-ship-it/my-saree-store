@@ -1,10 +1,9 @@
-HTML
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>YOUR BRAND | Premium Sarees</title>
 
 <style>
@@ -207,14 +206,16 @@ footer {
 </section>
 
 <section class="section" id="shop">
+
   <h2>Our Collection</h2>
 
   <div class="products">
 
     <div class="product">
+
       <img
         src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=80"
-        alt="Traditional saree">
+        alt="Classic Silk Saree">
 
       <h3>Classic Silk Saree</h3>
       <p class="price">₹1,499</p>
@@ -229,12 +230,14 @@ footer {
         onclick="addToCart('Classic Silk Saree',1499,'size1','qty1')">
         ADD TO CART
       </button>
+
     </div>
 
     <div class="product">
+
       <img
         src="https://images.unsplash.com/photo-1583391733956-6c78276477e7?auto=format&fit=crop&w=700&q=80"
-        alt="Elegant saree">
+        alt="Elegant Designer Saree">
 
       <h3>Elegant Designer Saree</h3>
       <p class="price">₹1,999</p>
@@ -249,12 +252,14 @@ footer {
         onclick="addToCart('Elegant Designer Saree',1999,'size2','qty2')">
         ADD TO CART
       </button>
+
     </div>
 
     <div class="product">
+
       <img
         src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=700&q=80"
-        alt="Festive saree">
+        alt="Festive Collection Saree">
 
       <h3>Festive Collection Saree</h3>
       <p class="price">₹2,499</p>
@@ -269,46 +274,76 @@ footer {
         onclick="addToCart('Festive Collection Saree',2499,'size3','qty3')">
         ADD TO CART
       </button>
+
     </div>
 
   </div>
 
   <div class="cart" id="cart">
+
     <h3>Your Shopping Bag</h3>
-    <div id="cartItems">Your cart is empty.</div>
-    <div class="total">Total: ₹<span id="total">0</span></div>
+
+    <div id="cartItems">
+      Your cart is empty.
+    </div>
+
+    <div class="total">
+      Total: ₹<span id="total">0</span>
+    </div>
 
     <button class="btn" onclick="checkout()">
       ORDER ON WHATSAPP
     </button>
 
-    <button class="btn" onclick="payUPI()" style="margin-top:10px">
+    <button class="btn"
+      onclick="payUPI()"
+      style="margin-top:10px">
       PAY WITH UPI
     </button>
+
   </div>
+
 </section>
 
 <section class="payment">
+
   <h2>Secure & Easy Payments</h2>
+
   <p>Pay using Google Pay, PhonePe, Paytm or any UPI app.</p>
-  <p><strong>UPI ID:</strong> 6290335475@ibl</p>
+
+  <p>
+    <strong>UPI ID:</strong>
+    6290335475@ibl
+  </p>
+
   <p>Orders are confirmed after payment verification.</p>
+
 </section>
 
 <footer>
+
   © 2026 YOUR BRAND. All Rights Reserved.
-  <p style="margin-top:8px">Designed with love.</p>
+
+  <p style="margin-top:8px">
+    Designed with love.
+  </p>
+
 </footer>
 
 <script>
+
 const WHATSAPP_NUMBER = "916290335475";
+
 const UPI_ID = "6290335475@ibl";
+
 const BRAND_NAME = "YOUR BRAND";
 
 let cart = [];
 
 function addToCart(name, price, sizeId, qtyId) {
+
   const size = document.getElementById(sizeId).value;
+
   const quantity = Math.max(
     1,
     parseInt(document.getElementById(qtyId).value) || 1
@@ -319,58 +354,95 @@ function addToCart(name, price, sizeId, qtyId) {
   );
 
   if (existing) {
+
     existing.quantity += quantity;
+
   } else {
-    cart.push({ name, price, size, quantity });
+
+    cart.push({
+      name,
+      price,
+      size,
+      quantity
+    });
+
   }
 
   updateCart();
+
 }
 
 function removeItem(index) {
+
   cart.splice(index, 1);
+
   updateCart();
+
 }
 
 function updateCart() {
+
   const cartItems = document.getElementById("cartItems");
+
   const totalElement = document.getElementById("total");
+
   const countElement = document.getElementById("cartCount");
 
   if (cart.length === 0) {
+
     cartItems.innerHTML = "Your cart is empty.";
+
     totalElement.textContent = "0";
+
     countElement.textContent = "0";
+
     return;
+
   }
 
   let total = 0;
+
   let count = 0;
 
   cartItems.innerHTML = cart.map((item, index) => {
+
     const subtotal = item.price * item.quantity;
+
     total += subtotal;
+
     count += item.quantity;
 
     return `
       <div class="cart-item">
+
         <span>
           ${item.name} (${item.size}) × ${item.quantity}
           <br>₹${subtotal}
         </span>
-        <button onclick="removeItem(${index})">Remove</button>
+
+        <button onclick="removeItem(${index})">
+          Remove
+        </button>
+
       </div>
     `;
+
   }).join("");
 
   totalElement.textContent = total;
+
   countElement.textContent = count;
+
 }
 
 function getOrderMessage() {
+
   if (cart.length === 0) {
+
     alert("Please add a product to your cart first.");
+
     return null;
+
   }
 
   const total = cart.reduce(
@@ -378,20 +450,32 @@ function getOrderMessage() {
     0
   );
 
-  let message = Hello ${BRAND_NAME}! I want to place an order:\n\n;
+  let message =
+    Hello ${BRAND_NAME}! I want to place an order:\n\n;
 
   cart.forEach(item => {
-    message += ${item.name} | ${item.size} | Qty: ${item.quantity} | ₹${item.price * item.quantity}\n;
+
+    message +=
+      ${item.name} | ${item.size} | Qty: ${item.quantity} | ₹${item.price * item.quantity}\n;
+
   });
 
   message += \nTotal: ₹${total};
-  message += "\n\nPlease confirm availability and delivery details.";
 
-  return { message, total };
+  message +=
+    "\n\nPlease confirm availability and delivery details.";
+
+  return {
+    message,
+    total
+  };
+
 }
 
 function checkout() {
+
   const order = getOrderMessage();
+
   if (!order) return;
 
   const url =
@@ -401,10 +485,13 @@ function checkout() {
     encodeURIComponent(order.message);
 
   window.open(url, "_blank");
+
 }
 
 function payUPI() {
+
   const order = getOrderMessage();
+
   if (!order) return;
 
   const paymentURL =
@@ -419,7 +506,9 @@ function payUPI() {
     encodeURIComponent("Saree order");
 
   window.location.href = paymentURL;
+
 }
+
 </script>
 
 </body>
